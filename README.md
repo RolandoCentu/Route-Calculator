@@ -1,12 +1,31 @@
-A* Pathfinding Visualization
-This project visualizes the A* pathfinding algorithm on a grid. Users can set a start point, end point, and obstacles, then see the A* algorithm find the shortest path.
-It has a menu
+# 🌐 A* Pathfinding Visualization
 
-Features
-Visual representation of the A* pathfinding algorithm
+Este proyecto visualiza el algoritmo de búsqueda **A\*** en una cuadrícula.  
+Los usuarios pueden establecer un punto de inicio, un punto final y obstáculos, luego observar cómo el algoritmo encuentra el camino más corto.  
+Incluye un menú interactivo para configurar la simulación.
 
-Set start and end points
+---
 
-Add and remove obstacles
+## ✨ Features
+- 📊 Representación visual del algoritmo A*
+- 🎯 Definir puntos de inicio y fin
+- 🧱 Agregar y eliminar obstáculos
+- ⚡ Visualización dinámica del proceso de búsqueda
 
-Dynamic pathfinding visualization
+---
+
+## 🚀 Uso
+1. Ejecuta el programa.
+2. Selecciona el punto de inicio y el punto final.
+3. Coloca obstáculos en la cuadrícula.
+4. Observa cómo el algoritmo A* encuentra el camino más corto en tiempo real.
+
+---
+
+## 📌 Tecnologías
+- Python
+- Algoritmo A*
+
+---
+El objetivo es **aprender y entender cómo funciona A\*** mediante una representación visual sencilla y dinámica.
+
