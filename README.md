@@ -15,7 +15,8 @@ Incluye un menú interactivo para configurar la simulación.
 ---
 
 ## 🚀 Uso
-1. Ejecuta el programa.
+1. Ejecuta el programa:
+(python route.py)
 2. Selecciona el punto de inicio y el punto final.
 3. Coloca obstáculos en la cuadrícula.
 4. Observa cómo el algoritmo A* encuentra el camino más corto en tiempo real.
@@ -27,5 +28,4 @@ Incluye un menú interactivo para configurar la simulación.
 - Algoritmo A*
 
 ---
-El objetivo es **aprender y entender cómo funciona A\*** mediante una representación visual sencilla y dinámica.
 
