@@ -33,12 +33,6 @@ def crear_mapa(filas, columnas):
     return mapa
 def imprimir_mapa(mapa):
     os.system("cls" if os.name == "nt" else "clear")
-    columnas = len(mapa[0]) if mapa else 0
-    ancho_mapa = columnas
-    
-    ancho_terminal = shutil.get_terminal_size(fallback=(80,24)).columns
-    espacio_izquierda = max(0, (ancho_terminal - ancho_mapa*2)//2)
-    relleno = " " * espacio_izquierda
     
     for fila in mapa:
         linea = "".join(c for c in fila)
