@@ -36,7 +36,7 @@ def imprimir_mapa(mapa):
     
     for fila in mapa:
         linea = "".join(c for c in fila)
-        print(relleno + linea)
+        print(linea)
 
 def encontrar(mapa, simbolo):
     for i, fila in enumerate(mapa):
