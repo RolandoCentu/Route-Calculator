@@ -1,4 +1,4 @@
-# 🌐 A* Pathfinding Visualization
+# 🌐 A* Calculador de rutas
 
 Este proyecto visualiza el algoritmo de búsqueda **A\*** en una cuadrícula.  
 Los usuarios pueden establecer un punto de inicio, un punto final y obstáculos, luego observar cómo el algoritmo encuentra el camino más corto.  
@@ -6,7 +6,7 @@ Incluye un menú interactivo para configurar la simulación.
 
 ---
 
-## ✨ Features
+## ✨ Caracteristicas
 - 📊 Representación visual del algoritmo A*
 - 🎯 Definir puntos de inicio y fin
 - 🧱 Agregar y eliminar obstáculos
@@ -27,5 +27,4 @@ Incluye un menú interactivo para configurar la simulación.
 - Python
 - Algoritmo A*
 
----
 
