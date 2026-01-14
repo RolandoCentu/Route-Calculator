@@ -1,4 +1,4 @@
-# 🌐 A* Calculador de rutas
+# 🌐 Calculador de rutas con A*
 
 Este proyecto visualiza el algoritmo de búsqueda **A\*** en una cuadrícula.  
 Los usuarios pueden establecer un punto de inicio, un punto final y obstáculos, luego observar cómo el algoritmo encuentra el camino más corto.  
