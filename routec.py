@@ -34,8 +34,8 @@ def imprimir_mapa(mapa):
     os.system("cls" if os.name == "nt" else "clear")
     
     for fila in mapa:
-        linea = "".join(c for c in fila)
-        print(linea)
+    print("".join(fila))
+
 
 def encontrar(mapa, simbolo):
     for i, fila in enumerate(mapa):
