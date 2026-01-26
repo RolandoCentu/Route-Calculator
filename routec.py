@@ -1,5 +1,5 @@
 import os
-import heapq
+import heapq # para convertir una lista en una cola de prioridad
 import time
 
 #Designo emojis para diferenciar 
@@ -37,7 +37,7 @@ def imprimir_mapa(mapa):
         print("".join(fila))
 
 
-def encontrar(mapa, simbolo):
+def encontrar(mapa, simbolo):  #busca simbolo y devuelve coordenadas
     for i, fila in enumerate(mapa):
         for j, val in enumerate(fila):
             if val == simbolo:
@@ -50,13 +50,13 @@ def limpiar_camino(mapa):
             if mapa[i][j] in (CAMINO, VISITADO):
                 mapa[i][j] = CELDA_VACIA
 
-def es_impasable(valor):
+def es_impasable(valor): #devuelve true si la celda es obstaculo
     return valor in (BORDE, EDIFICIO, BLOQUEADO)
 
-def vecinos(f,c):
+def vecinos(f,c): #coordenadas arriba,abajo,izquierda, derecha
     return [(f-1,c),(f+1,c),(f,c-1),(f,c+1)]
 
-def heuristica(a,b):
+def heuristica(a,b): #distancia manhattan
     return abs(a[0]-b[0]) + abs(a[1]-b[1])
 
 def reconstruir_camino(predecesor,inicio,meta):
@@ -94,7 +94,7 @@ def a_estrella(mapa):
     while abiertos:
         _,g_actual,actual = heapq.heappop(abiertos) #se extrae el nodo con menor fscore
         if actual in cerrados: 
-            continue
+            continue  # para pasar si es true o agregar a cerrados
         cerrados.add(actual)
 
         # Mostrar exploración paso a paso
@@ -119,10 +119,10 @@ def a_estrella(mapa):
             celda = mapa[nf][nc]
             if es_impasable(celda) and (nf,nc)!=meta: 
                 continue
-            costo = COSTO.get(celda,1)
+            costo = COSTO.get(celda,1) #calcular costos
             tentative_g = g_actual + costo
             
-            if tentative_g < g_score.get((nf,nc),float("inf")): # si el nuevo costo es menir, se actualizan 
+            if tentative_g < g_score.get((nf,nc),float("inf")): # si el nuevo costo es menor, entonces se actualizan 
                 predecesor[(nf,nc)] = actual
                 g_score[(nf,nc)] = tentative_g
                 f_total = tentative_g + heuristica((nf,nc),meta)
@@ -130,13 +130,13 @@ def a_estrella(mapa):
                 heapq.heappush(abiertos,(f_total,tentative_g,(nf,nc))) # se anhade a abierto
     return False,"No hay camino disponible"
 
-def meta_final(mapa,simbolo,fila,columna):
+def meta_final(mapa,simbolo,fila,columna): #para recalcular un nuevo camino cambiando inicio y fin y que no se dupliquen
     limpiar_camino(mapa)
-    anterior = encontrar(mapa,simbolo)
+    anterior = encontrar(mapa,simbolo) #busca inicio y meta
     if anterior:
         ai,aj = anterior
-        mapa[ai][aj] = CELDA_VACIA
-    mapa[fila][columna] = simbolo
+        mapa[ai][aj] = CELDA_VACIA #reemplaza para que quede limpio
+    mapa[fila][columna] = simbolo #nueva pos para ini o meta
 
 def desbloquear_zonas(mapa):
     for i in range(len(mapa)):
