@@ -82,17 +82,19 @@ def a_estrella(mapa):
         return False,"Inicio sobre obstáculo"
     if es_impasable(mapa[mi][mj]):
         return False,"Meta sobre obstáculo"
-
-    abiertos = []
-    g_score = {inicio:0}
-    f_score = {inicio:heuristica(inicio,meta)}
-    predecesor = {}
-    cerrados = set()
-    heapq.heappush(abiertos,(f_score[inicio],0,inicio))
+        
+    #f(n) = g(n) + h(n)
+    abiertos = [] #lista de nodos abiertos a explorar
+    g_score = {inicio:0}  #g costo real acumulado dede in inicio hasta un nodo especifico
+    f_score = {inicio:heuristica(inicio,meta)} # f es la suma de ambos valores
+    predecesor = {} #diccionario para guardar predecesor
+    cerrados = set() #conjunto para nodos explorados
+    heapq.heappush(abiertos,(f_score[inicio],0,inicio)) #para anadir un elemnto a la lista
 
     while abiertos:
-        _,g_actual,actual = heapq.heappop(abiertos)
-        if actual in cerrados: continue
+        _,g_actual,actual = heapq.heappop(abiertos) #se extrae el nodo con menor fscore
+        if actual in cerrados: 
+            continue
         cerrados.add(actual)
 
         # Mostrar exploración paso a paso
@@ -102,7 +104,7 @@ def a_estrella(mapa):
         imprimir_mapa(mapa)
         time.sleep(0.05)   # pausa para animación
 
-        if actual == meta:
+        if actual == meta:   # si nodo es la meta se reconstruye el camino con predecesores
             camino = reconstruir_camino(predecesor,inicio,meta)
             limpiar_camino(mapa)
             for (fi,ci) in camino:
@@ -111,18 +113,21 @@ def a_estrella(mapa):
             imprimir_mapa(mapa)
             return True,f"Camino encontrado con {len(camino)-1} pasos"
         
-        for nf,nc in vecinos(af,ac):
-            if not (0<=nf<len(mapa) and 0<=nc<len(mapa[0])): continue
+        for nf,nc in vecinos(af,ac): # si no es la meta, se exploran los vecinos
+            if not ( 0 <= nf<len(mapa) and 0 <= nc <len(mapa[0])): 
+                continue
             celda = mapa[nf][nc]
-            if es_impasable(celda) and (nf,nc)!=meta: continue
+            if es_impasable(celda) and (nf,nc)!=meta: 
+                continue
             costo = COSTO.get(celda,1)
             tentative_g = g_actual + costo
-            if tentative_g < g_score.get((nf,nc),float("inf")):
+            
+            if tentative_g < g_score.get((nf,nc),float("inf")): # si el nuevo costo es menir, se actualizan 
                 predecesor[(nf,nc)] = actual
                 g_score[(nf,nc)] = tentative_g
                 f_total = tentative_g + heuristica((nf,nc),meta)
                 f_score[(nf,nc)] = f_total
-                heapq.heappush(abiertos,(f_total,tentative_g,(nf,nc)))
+                heapq.heappush(abiertos,(f_total,tentative_g,(nf,nc))) # se anhade a abierto
     return False,"No hay camino disponible"
 
 def meta_final(mapa,simbolo,fila,columna):
@@ -191,5 +196,4 @@ def main():
                     mapa[x][y]=objeto
         except: pass
 
-if __name__=="__main__":
-    main()
+main()
