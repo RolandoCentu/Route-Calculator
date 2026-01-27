@@ -114,25 +114,25 @@ def a_estrella(mapa):
             return True,f"Camino encontrado con {len(camino)-1} pasos"
         
         for nf,nc in vecinos(af,ac): # si no es la meta, se exploran los vecinos
-            if not ( 0 <= nf<len(mapa) and 0 <= nc <len(mapa[0])): 
+            if not ( 0 <= nf<len(mapa) and 0 <= nc <len(mapa[0])): #validar que este dentro del mapa
                 continue
-            celda = mapa[nf][nc]
-            if es_impasable(celda) and (nf,nc)!=meta: 
+            celda = mapa[nf][nc]  # si la celda es un impasable no se puede pasar
+            if es_impasable(celda) and (nf,nc) != meta: #solo si es meta  
                 continue
             costo = COSTO.get(celda,1) #calcular costos
-            tentative_g = g_actual + costo
+            tentative_g = g_actual + costo #costo acumulado desde el inicio hasta ese vecino
             
-            if tentative_g < g_score.get((nf,nc),float("inf")): # si el nuevo costo es menor, entonces se actualizan 
+            if tentative_g < g_score.get((nf,nc),float("inf")): # se compara, si el nuevo costo es menor, entonces se actualizan 
                 predecesor[(nf,nc)] = actual
-                g_score[(nf,nc)] = tentative_g
-                f_total = tentative_g + heuristica((nf,nc),meta)
+                g_score[(nf,nc)] = tentative_g #se actualiza valores de g y f
+                f_total = tentative_g + heuristica((nf,nc),meta) #combina costo real y heuristica
                 f_score[(nf,nc)] = f_total
                 heapq.heappush(abiertos,(f_total,tentative_g,(nf,nc))) # se anhade a abierto
     return False,"No hay camino disponible"
 
 def meta_final(mapa,simbolo,fila,columna): #para recalcular un nuevo camino cambiando inicio y fin y que no se dupliquen
     limpiar_camino(mapa)
-    anterior = encontrar(mapa,simbolo) #busca inicio y meta
+    anterior = encontrar(mapa,simbolo) #busca inicio y meta en tiempo real
     if anterior:
         ai,aj = anterior
         mapa[ai][aj] = CELDA_VACIA #reemplaza para que quede limpio
