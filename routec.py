@@ -101,10 +101,10 @@ def a_estrella(mapa):
         af,ac = actual
         if (af,ac) not in (inicio,meta):
             mapa[af][ac] = VISITADO
-        imprimir_mapa(mapa)
-        time.sleep(0.05)   # pausa para animación
+            imprimir_mapa(mapa)
+            time.sleep(0.05)   # pausa para animación
         #Fuera del if → animación fluida, siempre ves el mapa actualizado.
-        #Dentro del if → animación parcial, solo ves cambios cuando se marcan celdas como
+        #Dentro del if → animación parcial, solo ves cambios cuando se marcan celdas 
         
         if actual == meta:   # si nodo es la meta se reconstruye el camino con predecesores
             camino = reconstruir_camino(predecesor,inicio,meta)
